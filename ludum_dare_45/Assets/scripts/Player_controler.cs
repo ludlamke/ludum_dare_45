@@ -9,7 +9,8 @@ public class Player_controler : MonoBehaviour
     [SerializeField]
     private float playerJumpHight = 5;
 
-    
+    public bool isContreolabe;
+    public bool canJump;
     private Rigidbody2D PlayerRB;
     private float playerVelocity;
 
