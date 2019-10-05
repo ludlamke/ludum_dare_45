@@ -11,11 +11,7 @@ public class Game_Manger : MonoBehaviour
     [SerializeField]
     private GameObject player;
     [SerializeField]
-    private Chang_Alffa ground;
-    [SerializeField]
-    private Chang_Alffa wall;
-    [SerializeField]
-    private Chang_Alffa BG;
+    private GameObject backDrop;
    
     // Start is called before the first frame update
     void Start()
@@ -89,10 +85,7 @@ public class Game_Manger : MonoBehaviour
     void addEnvionment()
     {
 
-        ground.changAlfa();
-        wall.changAlfa();
-        BG.changAlfa();
-        SceneManager.LoadScene("SampleScene");
+        backDrop.SetActive(false);
 
     }
 }
