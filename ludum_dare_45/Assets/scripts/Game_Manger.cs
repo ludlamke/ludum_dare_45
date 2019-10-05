@@ -58,6 +58,7 @@ public class Game_Manger : MonoBehaviour
         {
             Instantiate(player, this.transform.position, this.transform.rotation);
             playerControler = FindObjectOfType<Player_controler>();
+            camera.assignplayer();
         }
         
     }
@@ -68,6 +69,7 @@ public class Game_Manger : MonoBehaviour
         playerControler.isContreolabe = true;
     }
 
+    // event to enable player jump
     void AddPlayerJump()
     {
         playerControler.canJump = true;

@@ -11,7 +11,7 @@ public class Camera_Controler : MonoBehaviour
 
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        
     }
    
     // Update is called once per frame
@@ -29,6 +29,11 @@ public class Camera_Controler : MonoBehaviour
         }
         }
         
+    }
+
+    public void assignplayer()
+    {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 }
 

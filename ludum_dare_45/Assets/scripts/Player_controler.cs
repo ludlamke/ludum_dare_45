@@ -25,16 +25,26 @@ public class Player_controler : MonoBehaviour
         PlayerRB = GetComponent<Rigidbody2D>();
         feet = transform.GetChild(0);
         ground = LayerMask.GetMask("Ground");
+        isContreolabe = false;
+        canJump = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(feet.position, GroindCheak, ground);
-        player_Move();
+        if(isContreolabe)
+        {
+            player_Move();
+        }
+        
         if(isGrounded && Input.GetButtonDown("Jump"))
         {
-            PlayerJump();
+            if(canJump)
+            {
+                PlayerJump();
+            }
+            
         }
     }
 
