@@ -47,6 +47,17 @@ public class Game_Manger : MonoBehaviour
             instance = 0;
         }
 
+        if(beginingDone && Input.GetKeyDown(KeyCode.Space))
+        {
+            if(!playerControler)
+            {
+                instance = 1;
+            }
+            else if(playerControler && backDrop.activeInHierarchy)
+            {
+                instance = 2;
+            }
+        }
         switch(instance)
         {
             case 0:
@@ -60,7 +71,7 @@ public class Game_Manger : MonoBehaviour
                 boxHid.gameObject.SetActive(true);
                 dilog.resetArray(5, beging);
                 dilog.runInstance(part);
-                if (Input.anyKey && part == 0)
+                if (Input.anyKeyDown && part == 0)
                 {
                     chose1.gameObject.SetActive(true);
                     chose1.GetComponentInChildren<Text>().text = "No";
@@ -91,7 +102,7 @@ public class Game_Manger : MonoBehaviour
                     chose1.gameObject.SetActive(false);
                     chose2.gameObject.SetActive(false);
                     chose3.gameObject.SetActive(false);
-                    if (Input.GetKeyUp(KeyCode.Space))
+                    if (Input.anyKeyDown)
                     {
                         SummonPlayer();
                         part = 4;
@@ -107,7 +118,7 @@ public class Game_Manger : MonoBehaviour
                     chose1.gameObject.SetActive(false);
                     chose2.gameObject.SetActive(false);
                     chose3.gameObject.SetActive(false);
-                    if(Input.GetKeyUp(KeyCode.Space))
+                    if(Input.anyKeyDown)
                     {
                         addEnvionment();
                         part = 4;
@@ -122,8 +133,9 @@ public class Game_Manger : MonoBehaviour
                     chose1.gameObject.SetActive(false);
                     chose2.gameObject.SetActive(false);
                     chose3.gameObject.SetActive(false);
-                    if (Input.GetKeyUp(KeyCode.Space))
+                    if (Input.anyKeyDown)
                     {
+                        beginingDone = true;
                         instance = 98;
                         part = 0;
                     }
@@ -132,7 +144,15 @@ public class Game_Manger : MonoBehaviour
                 //chose1.gameObject.SetActive(true);
                 
             break;
-
+            case 1:
+                string[] ver =
+                new string[] {"whats up",
+                                "let there be senery"
+                                };
+                dilog.resetArray(2, ver);
+                boxHid.gameObject.SetActive(true);
+                
+                break;
             default:
                 chose1.gameObject.SetActive(false);
                 chose2.gameObject.SetActive(false);
