@@ -49,11 +49,11 @@ public class Game_Manger : MonoBehaviour
 
         if(beginingDone && Input.GetKeyDown(KeyCode.Space))
         {
-            if(!playerControler)
+            if(backDrop.activeInHierarchy)
             {
                 instance = 1;
             }
-            else if(playerControler && backDrop.activeInHierarchy)
+            else if(!backDrop.activeInHierarchy)
             {
                 instance = 2;
             }
@@ -65,7 +65,7 @@ public class Game_Manger : MonoBehaviour
                 new string[] {"oh someones hear welcom to the game are you injoring yourself",
                                 "why",
                                 "right games have those hang on",
-                                "right games have those hang on",
+                                "let there be senery",
                                 "there if theres anything else press space to call me"
                                 };
                 boxHid.gameObject.SetActive(true);
@@ -84,7 +84,7 @@ public class Game_Manger : MonoBehaviour
                 {
                     dilog.runInstance(part);
                     chose1.GetComponent<Button>().onClick.RemoveListener(changPath1);
-                    chose1.GetComponentInChildren<Text>().text = "a player would be nice";
+                    chose1.GetComponentInChildren<Text>().text = "a player charicter would be nice";
                     chose1.gameObject.SetActive(true);
                     chose1.GetComponent<Button>().onClick.AddListener(changPath2);
                     chose2.GetComponentInChildren<Text>().text = "some senery would be nice";
@@ -105,6 +105,8 @@ public class Game_Manger : MonoBehaviour
                     if (Input.anyKeyDown)
                     {
                         SummonPlayer();
+                        AddPlayerMov();
+                        AddPlayerJump();
                         part = 4;
                     }
                     break;
@@ -144,14 +146,59 @@ public class Game_Manger : MonoBehaviour
                 //chose1.gameObject.SetActive(true);
                 
             break;
+
             case 1:
                 string[] ver =
                 new string[] {"whats up",
-                                "let there be senery"
+                                "let there be senery" 
+                                
                                 };
                 dilog.resetArray(2, ver);
                 boxHid.gameObject.SetActive(true);
+                dilog.runInstance(part);
+                chose1.GetComponentInChildren<Text>().text = "some senery would be nice";
+                chose1.gameObject.SetActive(true);
+                chose1.GetComponent<Button>().onClick.AddListener(changPath1);
+                if(part == 1)
+                {
+                    if(Input.anyKeyDown)
+                    {
+                    addEnvionment();
+                    chose1.GetComponent<Button>().onClick.RemoveListener(changPath1);
+                        part = 0;
+                    instance = 98;
+                    }
+                    
+                }
+                break;
                 
+            case 2:
+                 ver =
+                new string[] {"whats up",
+                                "right games have those hang on"
+                                };
+
+                dilog.resetArray(2, ver);
+                boxHid.gameObject.SetActive(true);
+                dilog.runInstance(part);
+                chose1.GetComponentInChildren<Text>().text = "a player charicter would be nice";
+                chose1.gameObject.SetActive(true);
+                chose1.GetComponent<Button>().onClick.AddListener(changPath1);
+
+                if (part == 1)
+                {
+                    if (Input.anyKeyDown)
+                    {
+                    SummonPlayer();
+                    AddPlayerMov();
+                    AddPlayerJump();
+
+                        chose1.GetComponent<Button>().onClick.RemoveListener(changPath1);
+                        part = 0;
+                        instance = 98;
+                    }
+                        
+                }
                 break;
             default:
                 chose1.gameObject.SetActive(false);
@@ -204,9 +251,11 @@ public class Game_Manger : MonoBehaviour
         {
             Instantiate(player, this.transform.position, this.transform.rotation);
             playerControler = FindObjectOfType<Player_controler>();
-            camera.assignplayer();
+            camera.assignplayer(); 
         }
+
         
+
     }
     // event to enable player movment 
     void AddPlayerMov()

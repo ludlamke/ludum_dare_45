@@ -33,17 +33,17 @@ public class Player_controler : MonoBehaviour
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(feet.position, GroindCheak, ground);
-        if(isContreolabe)
-        {
+       // if(isContreolabe)
+       // {
             player_Move();
-        }
+       // }
         
         if(isGrounded && Input.GetButtonDown("Jump"))
         {
-            if(canJump)
-            {
+          // if(canJump)
+           // {
                 PlayerJump();
-            }
+          //  }
             
         }
     }
