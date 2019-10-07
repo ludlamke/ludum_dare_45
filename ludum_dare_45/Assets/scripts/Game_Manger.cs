@@ -49,7 +49,11 @@ public class Game_Manger : MonoBehaviour
 
         if(beginingDone && Input.GetKeyDown(KeyCode.Space))
         {
-            if(backDrop.activeInHierarchy)
+            if(backDrop.activeInHierarchy && playerControler)
+            {
+                instance = 3;
+            }
+            else if(backDrop.activeInHierarchy)
             {
                 instance = 1;
             }
@@ -199,6 +203,9 @@ public class Game_Manger : MonoBehaviour
                     }
                         
                 }
+                break;
+            case 3:
+
                 break;
             default:
                 chose1.gameObject.SetActive(false);
