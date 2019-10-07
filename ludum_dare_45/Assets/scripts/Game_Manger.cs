@@ -49,7 +49,7 @@ public class Game_Manger : MonoBehaviour
 
         if(beginingDone && Input.GetKeyDown(KeyCode.Space))
         {
-            if (backDrop.activeInHierarchy )
+            if (!backDrop.activeInHierarchy && player.activeInHierarchy)
             {
                 instance = 3;
             }
@@ -57,7 +57,7 @@ public class Game_Manger : MonoBehaviour
             {
                 instance = 1;
             }
-            else if(!backDrop.activeInHierarchy)
+            else if(!backDrop.activeInHierarchy && !player.activeInHierarchy)
             {
                 instance = 2;
             }
