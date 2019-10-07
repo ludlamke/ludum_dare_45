@@ -49,11 +49,11 @@ public class Game_Manger : MonoBehaviour
 
         if(beginingDone && Input.GetKeyDown(KeyCode.Space))
         {
-            if(backDrop.activeInHierarchy && playerControler)
+            if (backDrop.activeInHierarchy )
             {
                 instance = 3;
             }
-            else if(backDrop.activeInHierarchy)
+            else if (backDrop.activeInHierarchy)
             {
                 instance = 1;
             }
@@ -111,6 +111,7 @@ public class Game_Manger : MonoBehaviour
                         SummonPlayer();
                         AddPlayerMov();
                         AddPlayerJump();
+                        camera.cameraEnabled = true;
                         part = 4;
                     }
                     break;
@@ -196,7 +197,7 @@ public class Game_Manger : MonoBehaviour
                     SummonPlayer();
                     AddPlayerMov();
                     AddPlayerJump();
-
+                        camera.cameraEnabled = true;
                         chose1.GetComponent<Button>().onClick.RemoveListener(changPath1);
                         part = 0;
                         instance = 98;
@@ -205,7 +206,15 @@ public class Game_Manger : MonoBehaviour
                 }
                 break;
             case 3:
+                ver =
+                new string[] {"whats up",
+                                "right games have those hang on"
+                                };
 
+                dilog.resetArray(2, ver);
+                boxHid.gameObject.SetActive(true);
+                dilog.runInstance(part);
+                chose1.GetComponentInChildren<Text>().text = "instance 3";
                 break;
             default:
                 chose1.gameObject.SetActive(false);
@@ -260,8 +269,6 @@ public class Game_Manger : MonoBehaviour
             playerControler = FindObjectOfType<Player_controler>();
             camera.assignplayer(); 
         }
-
-        
 
     }
     // event to enable player movment 
